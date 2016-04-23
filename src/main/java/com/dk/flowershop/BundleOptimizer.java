@@ -1,8 +1,12 @@
 package com.dk.flowershop;
 
 
+import com.dk.flowershop.exception.FlowerShopException;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.dk.flowershop.exception.ErrorCode.INVALID_INPUT;
 
 public class BundleOptimizer {
 
@@ -18,7 +22,10 @@ public class BundleOptimizer {
         this.optimizedBundle = new int[target + 1];
     }
 
-    public void optimize() {
+    public void optimize() throws FlowerShopException {
+        if (target == 0 || bundles == null || bundles.length < 1) {
+            throw new FlowerShopException("Invalid input received for optimizing", INVALID_INPUT);
+        }
         int[] bundlesUsed = new int[target + 1];
 
         bundlesUsed[0] = 0;
