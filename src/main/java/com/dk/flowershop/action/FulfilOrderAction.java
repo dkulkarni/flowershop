@@ -9,6 +9,8 @@ import com.dk.flowershop.response.FulfilOrderResponse;
 
 import java.util.stream.Collectors;
 
+import static java.lang.Math.round;
+
 
 public class FulfilOrderAction implements Action<FulfilOrderResponse> {
 
@@ -37,7 +39,7 @@ public class FulfilOrderAction implements Action<FulfilOrderResponse> {
             order.getOrderItems().add(orderItem);
             sellingPrice += orderItem.getSellingPrice();
         }
-        order.setSellingPrice(sellingPrice);
+        order.setSellingPrice(round(sellingPrice * 100.0) / 100.0);
         response.setOrder(order);
         return response;
     }
@@ -67,7 +69,8 @@ public class FulfilOrderAction implements Action<FulfilOrderResponse> {
                     bundle.setQuantity(v.size());
                     bundle.setUnitSellingPrice(product.getCost().get(k));
                     orderItem.addBundle(bundle);
-                    orderItem.setSellingPrice(itemSellingPrice += (v.size() * product.getCost().get(k)));
+                    itemSellingPrice += (v.size() * product.getCost().get(k));
+                    orderItem.setSellingPrice(round(itemSellingPrice * 100.0) / 100.0);
                 });
 
         return orderItem;

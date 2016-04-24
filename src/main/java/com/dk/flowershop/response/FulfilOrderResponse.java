@@ -1,14 +1,14 @@
 package com.dk.flowershop.response;
 
 import com.dk.flowershop.CatalogCode;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
 @Data
+@ToString
 public class FulfilOrderResponse {
 
 
@@ -16,6 +16,7 @@ public class FulfilOrderResponse {
 
     @Data
     @EqualsAndHashCode
+    @ToString
     public static class Order {
 
         private Double sellingPrice;
@@ -24,6 +25,7 @@ public class FulfilOrderResponse {
 
         @Data
         @EqualsAndHashCode
+        @ToString
         public static class OrderItem {
 
             List<Bundle> bundles = newArrayList();
@@ -38,6 +40,9 @@ public class FulfilOrderResponse {
 
             @Data
             @EqualsAndHashCode
+            @ToString
+            @AllArgsConstructor
+            @NoArgsConstructor
             public static class Bundle {
 
                 private Integer quantity;

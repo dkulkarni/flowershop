@@ -39,7 +39,7 @@ public class CatalogFactory {
         t58BundleOptions.put(3, 5.95);
         t58BundleOptions.put(5, 9.95);
         t58BundleOptions.put(9, 16.99);
-        t58Product.setCost(r12bundleOptions);
+        t58Product.setCost(t58BundleOptions);
         products.put(T58, t58Product);
 
         catalog.setProducts(products);
