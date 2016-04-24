@@ -2,6 +2,7 @@ package com.dk.flowershop.response;
 
 import com.dk.flowershop.CatalogCode;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class FulfilOrderResponse {
     private Order order;
 
     @Data
+    @EqualsAndHashCode
     public static class Order {
 
         private Double sellingPrice;
@@ -21,6 +23,7 @@ public class FulfilOrderResponse {
         private List<OrderItem> orderItems = newArrayList();
 
         @Data
+        @EqualsAndHashCode
         public static class OrderItem {
 
             List<Bundle> bundles = newArrayList();
@@ -34,6 +37,7 @@ public class FulfilOrderResponse {
             }
 
             @Data
+            @EqualsAndHashCode
             public static class Bundle {
 
                 private Integer quantity;
