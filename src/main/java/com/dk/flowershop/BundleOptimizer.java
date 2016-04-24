@@ -2,36 +2,44 @@ package com.dk.flowershop;
 
 
 import com.dk.flowershop.exception.FlowerShopException;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.dk.flowershop.exception.ErrorCode.INVALID_INPUT;
 
+@Setter
+@Getter
 public class BundleOptimizer {
 
     private int[] optimizedBundle;
 
-    private int target;
+    private int quantity;
 
     private int[] bundles;
 
-    public BundleOptimizer(int[] bundles, int target) {
-        this.target = target;
+    public BundleOptimizer(int[] bundles, int quantity) {
+        this.quantity = quantity;
         this.bundles = bundles;
-        this.optimizedBundle = new int[target + 1];
+        this.optimizedBundle = new int[quantity + 1];
+    }
+
+    public BundleOptimizer() {
+        this.optimizedBundle = new int[quantity + 1];
     }
 
     public void optimize() throws FlowerShopException {
-        if (target == 0 || bundles == null || bundles.length < 1) {
+        if (quantity == 0 || bundles == null || bundles.length < 1) {
             throw new FlowerShopException("Invalid input received for optimizing", INVALID_INPUT);
         }
-        int[] bundlesUsed = new int[target + 1];
+        int[] bundlesUsed = new int[quantity + 1];
 
         bundlesUsed[0] = 0;
         optimizedBundle[0] = 1;
 
-        for (int item = 1; item <= target; item++) {
+        for (int item = 1; item <= quantity; item++) {
             int minBundle = item;
             int newBundle = 1;
 
@@ -51,7 +59,7 @@ public class BundleOptimizer {
 
     public List<Integer> getValidCombos() {
         List<Integer> combos = new ArrayList<Integer>();
-        for (int i = target; i > 0; ) {
+        for (int i = quantity; i > 0; ) {
             combos.add(this.optimizedBundle[i]);
             i -= this.optimizedBundle[i];
         }
