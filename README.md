@@ -8,13 +8,6 @@
 
 # Steps to run
 
-mvn clean test
+mvn clean install dependency:copy-dependencies 
 
-FulfilOrderActionTest.shouldCreateResponseWithManyItems uses the input
-
-10 R12
-
-15 L09
-
-13 T58
-
+bash run.sh
