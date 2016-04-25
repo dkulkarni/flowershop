@@ -42,9 +42,9 @@ public class FulfilOrderActionTest {
         expectedBundle.setQuantity(1);
 
         FulfilOrderResponse.Order.OrderItem.Bundle expectedBundle2 = new FulfilOrderResponse.Order.OrderItem.Bundle();
-        expectedBundle.setUnitSellingPrice(16.95);
-        expectedBundle.setBundleType(6);
-        expectedBundle.setQuantity(1);
+        expectedBundle2.setUnitSellingPrice(16.95);
+        expectedBundle2.setBundleType(6);
+        expectedBundle2.setQuantity(1);
 
         assertNotNull(fulfilOrderResponse);
         assertEquals(41.90, fulfilOrderResponse.getOrder().getSellingPrice());
