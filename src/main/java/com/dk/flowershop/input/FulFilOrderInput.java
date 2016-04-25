@@ -6,12 +6,17 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 @Data
 @NoArgsConstructor
 public class FulFilOrderInput {
 
-    private List<Item> items;
+    private List<Item> items = newArrayList();
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
     @Data
     @NoArgsConstructor
     public static class Item {
