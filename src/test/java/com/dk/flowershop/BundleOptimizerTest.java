@@ -42,5 +42,15 @@ public class BundleOptimizerTest {
         bundleOptimizer.optimize();
     }
 
+    @Test(expected = FlowerShopException.class)
+    public void shouldFailIfBundlesCantSumUpToQty() throws Exception {
+        int[] bundles = {3, 5};
+        int target = 7;
+
+        BundleOptimizer bundleOptimizer = new BundleOptimizer(bundles, target);
+        bundleOptimizer.optimize();
+        bundleOptimizer.getValidCombos();
+    }
+
 
 }

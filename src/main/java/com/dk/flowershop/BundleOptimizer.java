@@ -2,8 +2,10 @@ package com.dk.flowershop;
 
 
 import com.dk.flowershop.exception.FlowerShopException;
+import com.google.common.primitives.Ints;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +59,12 @@ public class BundleOptimizer {
         }
     }
 
-    public List<Integer> getValidCombos() {
+    public List<Integer> getValidCombos() throws FlowerShopException {
         List<Integer> combos = new ArrayList<Integer>();
         for (int i = quantity; i > 0; ) {
+            if (!Ints.asList(bundles).contains(optimizedBundle[i])) {
+                throw new FlowerShopException("Bundles " + ArrayUtils.toString(bundles) + " cannot sum up to " + quantity, INVALID_INPUT);
+            }
             combos.add(this.optimizedBundle[i]);
             i -= this.optimizedBundle[i];
         }
